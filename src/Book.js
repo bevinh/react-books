@@ -1,17 +1,21 @@
 import React, {Component} from 'react';
 
 class Book extends Component {
+
     componentDidMount() {
+        //setting the value of the dropdown
         const select = document.getElementById(this.props.id);
         select.value = this.props.shelf
     }
 
     handleSubmit = (e) => {
+        //setting the shelf of the book to pass up through the chain
         e.preventDefault();
         const book = this.props.id;
         if(this.props.onUpdateBook)
             this.props.onUpdateBook(book, e.target.value)
     };
+
     render(){
         return(
             <div className="book">

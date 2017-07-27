@@ -31,8 +31,7 @@ class App extends Component {
                   <ListBooks books={this.state.books}
                   onUpdateBook={(book, shelf) => {
                   this.updateBook(book, shelf);
-                      history.push('/')
-                  }}
+                      history.push('/')}}
                   />
                   )} />
               <Route path="/search" render={({history}) => (

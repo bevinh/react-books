@@ -4,9 +4,11 @@ import {Link} from 'react-router-dom';
 
 class ListBooks extends Component {
     render(){
+        //setting the filters for the books on the shelf
         const currentBooks = this.props.books.filter(book => book.shelf === "currentlyReading");
         const wantToReadBooks = this.props.books.filter(book => book.shelf === "wantToRead");
         const readBooks = this.props.books.filter(book => book.shelf === "read");
+
         return(
             <div className="list-books">
 
