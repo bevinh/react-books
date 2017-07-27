@@ -3,10 +3,12 @@ import './App.css';
 import * as BooksAPI from './BooksAPI'
 import ListBooks from './ListBooks';
 import SearchPage from './SearchPage';
+import {Route} from 'react-router-dom';
+
+
 class App extends Component {
     state = {
-        books: [],
-        showSearchPage: true
+        books: []
     }
     componentDidMount()  {
         BooksAPI.getAll().then((books) => this.setState({books}))
@@ -16,12 +18,12 @@ class App extends Component {
     return (
       <div className="App">
           <div className="app">
-              {this.state.showSearchPage ? (
-                    <SearchPage books={this.state.books} />
-                  ) : (
-                      <ListBooks books={this.state.books}/>
-
-                  )}
+              <Route exact path="/" render={() =>  (
+                  <ListBooks books={this.state.books}/>
+                  )} />
+              <Route path="/search" render={({history}) => (
+                      <SearchPage books={this.state.books} />
+                  )} />
           </div>
       </div>
     );
