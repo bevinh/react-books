@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
-import serializeForm from 'form-serialize';
 
 class Book extends Component {
+    componentDidMount() {
+        const select = document.getElementById(this.props.id)
+        select.value = this.props.shelf
+    }
+
     handleSubmit = (e) => {
         e.preventDefault()
         const book = this.props.id;
@@ -15,7 +19,7 @@ class Book extends Component {
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.cover}` }}></div>
                     <div className="book-shelf-changer">
                         <form >
-                        <select onChange={this.handleSubmit}>
+                        <select id={this.props.id} onChange={this.handleSubmit}>
                             <option value="none" disabled>Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>

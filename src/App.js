@@ -9,7 +9,8 @@ import {Route} from 'react-router-dom';
 class App extends Component {
     state = {
         books: []
-    }
+    };
+
     componentDidMount()  {
         BooksAPI.getAll().then((books) => this.setState({books}))
     }
@@ -17,10 +18,8 @@ class App extends Component {
     updateBook = (book, shelf) => {
         BooksAPI.get(book).then((book) => BooksAPI.update(book, shelf).then(
             BooksAPI.getAll().then((books) => this.setState({books}))
-
         ))
-
-      }
+      };
 
     render() {
     return (
