@@ -28,7 +28,7 @@ class ListBooks extends Component {
                             <h2 className="bookshelf-title">Currently Reading</h2>
                             <div className="bookshelf-books">
                                 <ol className="books-grid">
-                                    {currentBooks.map((book) => (
+                                    {currentBooks && currentBooks.map((book) => (
                                         <li key={book.id}>
                                             <Book onUpdateBook={(book, shelf) => {
                                                 this.props.onUpdateBook(book, shelf)
@@ -43,7 +43,7 @@ class ListBooks extends Component {
                             <h2 className="bookshelf-title">Want to Read</h2>
                             <div className="bookshelf-books">
                                 <ol className="books-grid">
-                                    {wantToReadBooks.map((book) => (
+                                    {wantToReadBooks && wantToReadBooks.map((book) => (
                                         <li key={book.id}>
                                             <Book onUpdateBook={(book, shelf) => {
                                                 this.props.onUpdateBook(book, shelf)}} title={book.title}id={book.id} shelf={book.shelf} cover={book.imageLinks.thumbnail} authors={book.authors} />
@@ -56,7 +56,7 @@ class ListBooks extends Component {
                             <h2 className="bookshelf-title">Read</h2>
                             <div className="bookshelf-books">
                                 <ol className="books-grid">
-                                    {readBooks.map((book) => (
+                                    {readBooks && readBooks.map((book) => (
                                         <li key={book.id}>
                                             <Book
                                                 onUpdateBook={(book, shelf) => {

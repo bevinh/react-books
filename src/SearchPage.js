@@ -25,16 +25,14 @@ class SearchPage extends Component {
                 <div className="search-books-bar">
                     <Link to="/" className="close-search" >Close</Link>
                     <div className="search-books-input-wrapper">
-                        <form onSubmit={this.handleSubmit}>
                         <input id="search_bar" type="text"
                                name="query"
-                               placeholder="Search by title or author"/>
-                        </form>
+                               placeholder="Search by title or author" onChange={this.handleSubmit}/>
                     </div>
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        {this.props.books.map((book) => (
+                        {this.props.books && this.props.books.map((book) => (
                             <li key={book.id}>
                                 <Book onUpdateBook={(book, shelf) => {
                                     this.props.onUpdateBook(book, shelf)}} id={book.id} shelf={book.shelf} title={book.title} cover={book.imageLinks.thumbnail} authors={book.authors} />
