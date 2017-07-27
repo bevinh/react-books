@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import * as BooksAPI from './BooksAPI'
 import ListBooks from './ListBooks';
+import Book from './Book';
 
 class App extends Component {
     state = {
@@ -34,7 +35,13 @@ class App extends Component {
                               </div>
                           </div>
                           <div className="search-books-results">
-                              <ol className="books-grid"></ol>
+                              <ol className="books-grid">
+                                  {this.state.books.map((book) => (
+                                      <li key={book.id}>
+                                          <Book title={book.title} cover={book.imageLinks.thumbnail} authors={book.authors} />
+                                      </li>
+                                  ))}
+                              </ol>
                           </div>
                       </div>
                   ) : (
