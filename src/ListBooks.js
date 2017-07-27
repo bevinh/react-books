@@ -21,7 +21,9 @@ class ListBooks extends Component {
                                 <ol className="books-grid">
                                     {currentBooks.map((book) => (
                                         <li key={book.id}>
-                                            <Book title={book.title} cover={book.imageLinks.thumbnail} authors={book.authors} />
+                                            <Book onUpdateBook={(book, shelf) => {
+                                                this.props.onUpdateBook(book, shelf)
+                                            }} title={book.title} id={book.id} shelf={book.shelf} cover={book.imageLinks.thumbnail} authors={book.authors} />
                                         </li>
                                     ))}
 
@@ -34,7 +36,8 @@ class ListBooks extends Component {
                                 <ol className="books-grid">
                                     {wantToReadBooks.map((book) => (
                                         <li key={book.id}>
-                                            <Book title={book.title} cover={book.imageLinks.thumbnail} authors={book.authors} />
+                                            <Book onUpdateBook={(book, shelf) => {
+                                                this.props.onUpdateBook(book, shelf)}} title={book.title}id={book.id} shelf={book.shelf} cover={book.imageLinks.thumbnail} authors={book.authors} />
                                         </li>
                                     ))}
                                 </ol>
@@ -46,7 +49,10 @@ class ListBooks extends Component {
                                 <ol className="books-grid">
                                     {readBooks.map((book) => (
                                         <li key={book.id}>
-                                            <Book title={book.title} cover={book.imageLinks.thumbnail} authors={book.authors} />
+                                            <Book
+                                                onUpdateBook={(book, shelf) => {
+                                                    this.props.onUpdateBook(book, shelf)}}
+                                                title={book.title} id={book.id} shelf={book.shelf} cover={book.imageLinks.thumbnail} authors={book.authors} />
                                         </li>
                                     ))}
 

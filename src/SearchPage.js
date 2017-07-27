@@ -49,7 +49,7 @@ class SearchPage extends Component {
                     <ol className="books-grid">
                         {showingBooks.map((book) => (
                             <li key={book.id}>
-                                <Book title={book.title} cover={book.imageLinks.thumbnail} authors={book.authors} />
+                                <Book onUpdateBook={this.props.onUpdateBook } shelf={book.shelf} title={book.title} cover={book.imageLinks.thumbnail} authors={book.authors} />
                             </li>
                         ))}
                     </ol>
