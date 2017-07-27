@@ -1,4 +1,4 @@
-#Books App
+##Books App
 
 ## Installation
 Welcome to the books app. It has a couple of handy features, you can mark
