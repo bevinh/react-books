@@ -16,6 +16,14 @@ class App extends Component {
         BooksAPI.getAll().then((books) => this.setState({books}))
     }
 
+    searchBooks = (query, maxResults) => {
+        //Search for books
+        BooksAPI.search(query, maxResults).then((books) =>
+                this.setState({books})
+        )
+
+    };
+
     updateBook = (book, shelf) => {
         //get the book, update it, then get all again to refresh the state
         BooksAPI.get(book).then((book) => BooksAPI.update(book, shelf).then(
@@ -37,6 +45,8 @@ class App extends Component {
               <Route path="/search" render={({history}) => (
                       <SearchPage books={this.state.books}
                       onUpdateBook={this.updateBook}
+                      onSearchBooks={(query, maxResults) =>{ this.searchBooks(query, maxResults);
+                      history.push('/search')}}
                       />
                   )} />
           </div>

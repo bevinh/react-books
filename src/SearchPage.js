@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Book from './Book';
-import escapeRegExp from 'escape-string-regexp';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
@@ -8,42 +7,34 @@ class SearchPage extends Component {
 
     static propTypes={
         books: PropTypes.array.isRequired,
-        onUpdateBook: PropTypes.func.isRequired
+        onUpdateBook: PropTypes.func.isRequired,
+        onSearchBooks: PropTypes.func.isRequired
     };
 
-    state = {
-        query: ''
-    };
 
-    //clean the search results
-    updateQuery = (query) => {
-        this.setState({query: query.trim()})
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const query = document.getElementById("search_bar").value.trim();
+        if(this.props.onSearchBooks)
+            this.props.onSearchBooks(query)
     };
 
     render(){
-        let showingBooks;
-        if(this.state.query){
-            const match = new RegExp(escapeRegExp(this.state.query), 'i');
-            showingBooks = this.props.books.filter((book) => match.test(book.title) || match.test(book.authors))
-        } else {
-            showingBooks = this.props.books
-        }
-        const { query } = this.state;
         return(
             <div className="search-books">
                 <div className="search-books-bar">
                     <Link to="/" className="close-search" >Close</Link>
                     <div className="search-books-input-wrapper">
-                        <input type="text"
-                               value={query}
-                               onChange={(event) => this.updateQuery(event.target.value)}
+                        <form onSubmit={this.handleSubmit}>
+                        <input id="search_bar" type="text"
+                               name="query"
                                placeholder="Search by title or author"/>
-
+                        </form>
                     </div>
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        {showingBooks.map((book) => (
+                        {this.props.books.map((book) => (
                             <li key={book.id}>
                                 <Book onUpdateBook={(book, shelf) => {
                                     this.props.onUpdateBook(book, shelf)}} id={book.id} shelf={book.shelf} title={book.title} cover={book.imageLinks.thumbnail} authors={book.authors} />
