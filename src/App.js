@@ -12,10 +12,12 @@ class App extends Component {
     };
 
     componentDidMount()  {
+        //get all books
         BooksAPI.getAll().then((books) => this.setState({books}))
     }
 
     updateBook = (book, shelf) => {
+        //get the book, update it, then get all again to refresh the state
         BooksAPI.get(book).then((book) => BooksAPI.update(book, shelf).then(
             BooksAPI.getAll().then((books) => this.setState({books}))
         ))
@@ -28,7 +30,7 @@ class App extends Component {
               <Route exact path="/" render={({history}) =>  (
                   <ListBooks books={this.state.books}
                   onUpdateBook={(book, shelf) => {
-                  this.updateBook(book, shelf)
+                  this.updateBook(book, shelf);
                       history.push('/')
                   }}
                   />

@@ -2,16 +2,16 @@ import React, {Component} from 'react';
 
 class Book extends Component {
     componentDidMount() {
-        const select = document.getElementById(this.props.id)
+        const select = document.getElementById(this.props.id);
         select.value = this.props.shelf
     }
 
     handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const book = this.props.id;
         if(this.props.onUpdateBook)
             this.props.onUpdateBook(book, e.target.value)
-    }
+    };
     render(){
         return(
             <div className="book">
