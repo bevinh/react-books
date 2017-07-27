@@ -1,13 +1,20 @@
 import React, {Component} from 'react';
 import Book from './Book';
 import escapeRegExp from 'escape-string-regexp';
+import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 class SearchPage extends Component {
 
+    static propTypes={
+        books: PropTypes.array.isRequired,
+        onUpdateBook: PropTypes.func.isRequired
+    };
+
     state = {
         query: ''
     };
+
     //clean the search results
     updateQuery = (query) => {
         this.setState({query: query.trim()})
